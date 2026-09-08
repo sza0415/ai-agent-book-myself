@@ -1,7 +1,4 @@
-{#-
-  Override: inject language switcher dropdown into the header bar,
-  between search and the repo source link.
--#}
+{# Custom header with a sidebar collapse control. #}
 {% set class = "md-header" %}
 {% if "navigation.tabs.sticky" in features %}
   {% set class = class ~ " md-header--shadow md-header--lifted" %}
@@ -78,38 +75,6 @@
         </label>
         {% include "partials/search.html" %}
       {% endif %}
-    {% endif %}
-
-    {# ── Language selector dropdown (between search & source) ── #}
-    <div class="lang-switcher">
-      <button id="lang-selector"
-              class="lang-select"
-              type="button"
-              aria-haspopup="menu"
-              aria-expanded="false"
-              aria-controls="lang-menu"
-              aria-label="Switch language">
-        <span class="lang-select__icon" aria-hidden="true">
-          {% include ".icons/material/translate.svg" %}
-        </span>
-        <span class="lang-select__label" data-lang-label>Language</span>
-        <span class="lang-select__chevron" aria-hidden="true">
-          {% include ".icons/material/chevron-down.svg" %}
-        </span>
-      </button>
-      <div id="lang-menu"
-           class="lang-menu"
-           role="menu"
-           aria-labelledby="lang-selector"
-           hidden></div>
-    </div>
-
-    {# Expose language config + site root to the switcher script. #}
-    <script>window.LANG_CONFIG = {{ config.extra.languages | tojson }};</script>
-    <script>window.SITE_ROOT = "{{ config.site_url }}";</script>
-    {# Tier-3 machine-translation fallback (extras/auto-translate.js). #}
-    {% if config.extra.auto_translate %}
-      <script>window.AUTO_TRANSLATE_CONFIG = {{ config.extra.auto_translate | tojson }};</script>
     {% endif %}
 
     {% if config.repo_url %}

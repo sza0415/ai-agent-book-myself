@@ -17,11 +17,11 @@ from site_source_paths import (  # noqa: E402
 
 
 def test_regular_page_maps_to_same_repository_path(tmp_path: Path):
-    source = tmp_path / "book-en" / "chapter1.md"
+    source = tmp_path / "book" / "chapter1.md"
     source.parent.mkdir(parents=True)
     source.touch()
 
-    assert source_path_for_page("book-en/chapter1.md", tmp_path) == source
+    assert source_path_for_page("book/chapter1.md", tmp_path) == source
 
 
 def test_promoted_chapter_index_maps_back_to_chapter_source(tmp_path: Path):

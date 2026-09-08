@@ -2,7 +2,7 @@
 
 Companion evidence for *AI Agents in Depth*, Chapter 7 — **实验 7-6 ★★：对 AndroidWorld 失败轨迹做失败归因**.
 
-← [Back to android-world notes](../README.md) · 📖 [Read the chapter](../../../book/chapter7.md)（[EN](../../../book-en/chapter7.md)）
+← [Back to android-world notes](../README.md) · 📖 [Read the chapter](../../../book/chapter7.md)
 
 ## What this is
 

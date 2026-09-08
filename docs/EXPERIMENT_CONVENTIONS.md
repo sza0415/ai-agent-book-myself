@@ -132,7 +132,6 @@ Baseline validation for a layout-only change:
 
 ```bash
 git diff --check
-python scripts/check_i18n_consistency.py
 uv lock --check
 ```
 

@@ -3,7 +3,7 @@
 > Compares tabular Q-learning with LLM in-context learning on a treasure-hunt game with hidden mechanics (Shunyu Yao, “The Second Half”).  
 > 代码位于第 1 章项目树；对应书中 **实验 7-1 ★（Q-learning 在寻宝游戏中的表现）** 与 **实验 7-2 ★★（传统 RL 与 LLM Agent 的对比研究）**。
 
-← [Chapter 1 index / 返回第 1 章目录](../README.md) · 📖 [Read Chapter 7 / 读第 7 章正文](../../book/chapter7.md)（[EN](../../book-en/chapter7.md)）
+← [Chapter 1 index / 返回第 1 章目录](../README.md) · 📖 [Read Chapter 7 / 读第 7 章正文](../../book/chapter7.md)
 
 ---
 

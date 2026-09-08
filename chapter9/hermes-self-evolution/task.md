@@ -1,7 +1,7 @@
 # Book-driven self-evolution task
 
-You are Hermes working on your own source repository. Read the English edition
-of *AI Agents in Depth* at `/home/ubuntu/ai-agent-book/book-en/` before deciding
+You are Hermes working on your own source repository. Read the Chinese edition
+of *AI Agents in Depth* at `/home/ubuntu/ai-agent-book/book/` before deciding
 what to change. Inspect all ten chapter files, using targeted searches and
 section-by-section reads so that conclusions are grounded in the actual text.
 

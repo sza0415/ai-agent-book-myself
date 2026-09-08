@@ -21,9 +21,7 @@
  * comes for free.
  *
  * One case needs JS: on pages Material doesn't consider "active" — the
- * translated editions (sidebar links are rewritten client-side by
- * lang-switcher.js) and the per-experiment pages, which aren't in the
- * nav — no checkbox is checked. There we match the current URL against
+ * per-experiment pages, which aren't in the nav — no checkbox is checked. There we match the current URL against
  * each section's chapter number and open the matching section.
  *
  * The header also contains a desktop-only button for hiding the entire
