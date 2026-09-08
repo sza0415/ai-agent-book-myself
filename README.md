@@ -1,3 +1,7 @@
+<!-- Modified by sza0415 on 2026-09-08: added personal reading site information. -->
+
+> 本仓库是 [bojieli/ai-agent-book](https://github.com/bojieli/ai-agent-book) 的个人 fork。个人在线阅读地址：https://sza0415.github.io/ai-agent-book-myself/ （首次部署完成后可用）。原作者署名及 Apache 2.0 许可证保留。
+
 # 深入理解 AI Agent：设计原理与工程实践
 
 [![PDF](https://img.shields.io/badge/PDF-%E4%B8%8B%E8%BD%BD-success.svg)](#-电子书) [![在线阅读](https://img.shields.io/badge/🌐_在线阅读-bojieli.github.io-success?style=flat-square)](https://bojieli.github.io/ai-agent-book/) [![Stars](https://img.shields.io/github/stars/bojieli/ai-agent-book?style=social)](https://github.com/bojieli/ai-agent-book) [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)

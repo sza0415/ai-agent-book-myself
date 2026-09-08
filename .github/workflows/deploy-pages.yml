@@ -1,3 +1,4 @@
+# Modified by sza0415 on 2026-09-08 to publish this fork.
 name: deploy-pages
 
 on:
@@ -39,8 +40,8 @@ jobs:
           path: site
 
   deploy:
-    # Publishing is owned by the canonical repository; forks still verify builds.
-    if: github.repository == 'bojieli/ai-agent-book'
+    # Publish only this personal reading repository.
+    if: github.repository == 'sza0415/ai-agent-book-myself'
     needs: build
     permissions:
       pages: write

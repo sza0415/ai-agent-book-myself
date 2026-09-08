@@ -1,8 +1,9 @@
+# Modified by sza0415 on 2026-09-08 for the personal reading site.
 site_name: 深入理解 AI Agent
 site_description: 深入理解 AI Agent：设计原理与工程实践。围绕 Agent 的核心原理，以 10 章正文和配套实验讲解从理论到工程实践的完整流程。
-site_url: https://bojieli.github.io/ai-agent-book
-repo_url: https://github.com/bojieli/ai-agent-book
-repo_name: bojieli/ai-agent-book
+site_url: https://sza0415.github.io/ai-agent-book-myself/
+repo_url: https://github.com/sza0415/ai-agent-book-myself
+repo_name: sza0415/ai-agent-book-myself
 edit_uri: edit/main
 
 # The actual docs are assembled into `_web/` by `scripts/build_site.sh`

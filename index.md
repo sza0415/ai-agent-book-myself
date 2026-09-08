@@ -94,10 +94,16 @@ description: 围绕核心公式 Agent = LLM + 上下文 + 工具,用 10 章把 A
 
 ---
 
+<!-- Modified by sza0415 on 2026-09-08: added fork attribution and license download. -->
+
 ## 关于
 
-- **仓库**:[bojieli/ai-agent-book](https://github.com/bojieli/ai-agent-book)
-- **许可证**:Apache License 2.0
+本站是 sza0415 基于原作者开源作品构建的个人阅读站，非原作者官方网站。书籍内容及原有署名归原作者与贡献者所有；本站调整了部署配置与来源说明。
+
+- **本站源码**：[sza0415/ai-agent-book-myself](https://github.com/sza0415/ai-agent-book-myself)
+
+- **原项目**:[bojieli/ai-agent-book](https://github.com/bojieli/ai-agent-book)
+- **许可证**：[Apache License 2.0 完整文本](LICENSE.txt)
 - **本站点**:每次仓库推送后由 GitHub Actions 自动重新构建
 
 > 💡 本书内容持续更新,本站点在每次仓库推送后由 GitHub Actions 自动重新构建。如需下载完整 PDF,请使用上方下载按钮或访问 [Releases](https://github.com/bojieli/ai-agent-book/releases)。

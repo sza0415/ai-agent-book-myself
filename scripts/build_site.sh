@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Modified by sza0415 on 2026-09-08: distribute the original license.
 # Assemble the MkDocs docs directory (`_web/`) from the book Markdown sources.
 # Reader-facing Markdown, images, frontend assets, and linked JSON evidence are
 # copied; code, PDFs and LaTeX sources are left out so the generated site stays
@@ -13,6 +14,7 @@ mkdir -p "$DEST"
 
 # Site homepage (root index.md).
 cp "$ROOT/index.md" "$DEST/index.md"
+cp "$ROOT/LICENSE" "$DEST/LICENSE.txt"
 
 # robots.txt at the site root (points crawlers at the auto-generated sitemap).
 [ -f "$ROOT/robots.txt" ] && cp "$ROOT/robots.txt" "$DEST/robots.txt"
