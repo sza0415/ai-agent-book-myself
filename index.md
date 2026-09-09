@@ -1,6 +1,6 @@
 ---
 title: 深入理解 AI Agent
-description: 围绕核心公式 Agent = LLM + 上下文 + 工具,用 10 章把 AI Agent 从原理讲到工程实战的开源技术书。正文、配图、94 个配套实验全部开源。
+description: 围绕核心公式 Agent = LLM + 上下文 + 工具,用 10 章把 AI Agent 从原理讲到工程实战的开源技术书。正文、配图、109 个配套实验全部开源。
 ---
 
 <div class="hero" markdown>
@@ -61,23 +61,23 @@ description: 围绕核心公式 Agent = LLM + 上下文 + 工具,用 10 章把 A
 </a>
 
 <a class="exp-card" href="book/chapter6/">
-<span class="exp-title">🎯 第 6 章 · Agent 的评估</span>
-<span class="exp-desc">把表现变成可比较信号:评估环境、指标、统计显著性</span>
+<span class="exp-title">🎙️ 第 6 章 · 交互：观察与动作空间的扩展</span>
+<span class="exp-desc">异步与事件驱动、语音交互、Computer Use 和机器人操作</span>
 </a>
 
 <a class="exp-card" href="book/chapter7/">
-<span class="exp-title">🧠 第 7 章 · 模型后训练</span>
-<span class="exp-desc">SFT、强化学习——把 Harness 中积累的反馈信号写入模型参数</span>
+<span class="exp-title">🎯 第 7 章 · Agent 的评估</span>
+<span class="exp-desc">把表现变成可比较信号:评估环境、指标、统计显著性</span>
 </a>
 
 <a class="exp-card" href="book/chapter8/">
-<span class="exp-title">🌱 第 8 章 · Agent 的持续进化</span>
-<span class="exp-desc">从可靠学习信号到知识、指令、程序与参数更新</span>
+<span class="exp-title">🧠 第 8 章 · 模型后训练</span>
+<span class="exp-desc">SFT、强化学习——把 Harness 中积累的反馈信号写入模型参数</span>
 </a>
 
 <a class="exp-card" href="book/chapter9/">
-<span class="exp-title">🎙️ 第 9 章 · 多模态与实时交互</span>
-<span class="exp-desc">语音 Agent、Computer Use、机器人操作</span>
+<span class="exp-title">🌱 第 9 章 · Agent 的持续进化</span>
+<span class="exp-desc">从可靠学习信号到知识、指令、程序与参数更新</span>
 </a>
 
 <a class="exp-card" href="book/chapter10/">
