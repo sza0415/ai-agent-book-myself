@@ -1,3 +1,4 @@
+# Modified by sza0415 on 2026-09-09: build only the Chinese edition.
 name: Build latest book artifacts
 
 # Rebuilds the PDF and EPUB editions whenever the book sources change and
@@ -17,15 +18,6 @@ on:
       - '.github/workflows/build-latest.yml'
       - '.github/scripts/**'
   workflow_dispatch:
-    inputs:
-      edition:
-        description: Edition to verify on a non-main ref
-        required: true
-        default: all
-        type: choice
-        options:
-          - all
-          - zh-CN
 
 permissions:
   contents: write
@@ -117,39 +109,31 @@ jobs:
       - name: Refresh font cache
         run: fc-cache -f
 
-      - name: Build PDFs
+      - name: Build Chinese PDF
         env:
           PANGOCAIRO_BACKEND: fontconfig
-          EDITION: ${{ inputs.edition || 'all' }}
+          FC_LANG: zh-cn
         run: |
           cd book
           bash build_pdf.sh
 
       - name: Verify Chinese figure fonts
-        if: github.ref == 'refs/heads/main'
         run: |
           python3 .github/scripts/verify_pdf_fonts.py \
             "book/深入理解-AI-Agent-李博杰-v2.0.pdf"
 
-      - name: Build EPUBs
-        env:
-          EDITION: ${{ inputs.edition || 'all' }}
-        run: |
-          if [ "$GITHUB_REF" = "refs/heads/main" ] || [ "$EDITION" = "all" ]; then
-            ./build_epub.sh all
-          else
-            ./build_epub.sh "$EDITION"
-          fi
+      - name: Build Chinese EPUB
+        run: ./build_epub.sh zh-CN
 
       - name: Upload verification artifacts
-        if: github.repository != 'bojieli/ai-agent-book' || github.ref != 'refs/heads/main'
+        if: always() && (github.repository != 'bojieli/ai-agent-book' || github.ref != 'refs/heads/main')
         uses: actions/upload-artifact@v4
         with:
-          name: book-verification-${{ inputs.edition || 'all' }}
+          name: book-verification-zh-CN
           path: |
             book/*.pdf
             book/*.epub
-          if-no-files-found: error
+          if-no-files-found: warn
 
       - name: Upload to the rolling latest release
         if: github.repository == 'bojieli/ai-agent-book' && github.ref == 'refs/heads/main'

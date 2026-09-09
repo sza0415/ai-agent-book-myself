@@ -1,56 +1,75 @@
 #!/usr/bin/env python3
-"""Verify that Chinese PDFs embed PingFang in SVG-derived figures.
+"""Check embedded Chinese figure fonts using Poppler's pdffonts.
 
-Guards against the macOS-runner regression where PingFang (an on-demand font
-since macOS Sequoia) is missing and rsvg-convert silently falls back to
-Hiragino Sans, rendering Chinese figure text with Japanese glyph variants.
+Modified by sza0415 on 2026-09-09: inspect actual PDF font resources instead
+of arbitrary compressed streams, and distinguish Hiragino Sans GB (Simplified
+Chinese) from Japanese Hiragino fonts. Requires pdffonts (Poppler).
 
 Usage: verify_pdf_fonts.py <pdf> [<pdf> ...]
 """
 
 import re
+import subprocess
 import sys
-import zlib
 from collections import Counter
 
-# A handful of Hiragino streams appear even in correct builds (rare glyphs
-# PingFang lacks; the fontconfig cascade on CI falls back slightly more often
-# than local CoreText: ~12 streams vs ~4). A wholesale fallback produces 50+.
+# Allow occasional Japanese fallback for rare glyphs, but flag widespread use.
+# Counts embedded PDF font resources, not compressed streams or text characters.
 HIRAGINO_LIMIT = 20
+FONT_ROW = re.compile(
+    r"^(\S+)\s+.+?\s+(yes|no)\s+(yes|no)\s+(yes|no)\s+\d+\s+\d+\s*$"
+)
+
+
+def font_group(name):
+    name = re.sub(r"^[A-Z]{6}\+", "", name)
+    if name.startswith("HiraginoSansGB"):
+        return "HiraginoSansGB"
+    if name.startswith(("HiraginoSansCNS", "HiraginoSansTC")):
+        return "HiraginoTraditionalChinese"
+    if name.startswith("Hiragino"):
+        return "HiraginoJapanese"
+    for family in ("PingFang", "Songti", "Heiti", "Noto"):
+        if family in name:
+            return family
+    return None
 
 
 def scan(path):
-    data = open(path, "rb").read()
+    result = subprocess.run(
+        ["pdffonts", str(path)], check=True, capture_output=True, text=True
+    )
     hits = Counter()
-    for m in re.finditer(rb"stream\r?\n", data):
-        start = m.end()
-        end = data.find(b"endstream", start)
-        if end < 0:
-            continue
-        try:
-            decoded = zlib.decompress(data[start:end])
-        except zlib.error:
-            continue
-        for name in (b"PingFang", b"Hiragino", b"Songti", b"Heiti", b"Noto"):
-            if name in decoded:
-                hits[name.decode()] += 1
+    for line in result.stdout.splitlines():
+        row = FONT_ROW.match(line)
+        if row and row[2] == "yes":
+            group = font_group(row[1])
+            if group:
+                hits[group] += 1
     return hits
 
 
 def main():
+    if len(sys.argv) < 2:
+        print(__doc__, file=sys.stderr)
+        return 2
     failed = False
     for path in sys.argv[1:]:
-        hits = scan(path)
-        print(f"{path}: {dict(hits)}")
+        try:
+            hits = scan(path)
+        except (OSError, subprocess.CalledProcessError) as error:
+            print(f"{path}: ERROR: cannot inspect PDF fonts: {error}")
+            return 1
+        print(f"{path}: embedded font resources {dict(hits)}")
         if hits["PingFang"] == 0:
-            print(f"  ERROR: no PingFang embedded -- figure font fallback occurred")
+            print("  ERROR: no embedded PingFang -- check figure font installation")
             failed = True
-        if hits["Hiragino"] > HIRAGINO_LIMIT:
-            print(f"  ERROR: {hits['Hiragino']} Hiragino streams (limit {HIRAGINO_LIMIT})"
-                  " -- Japanese fallback font used for Chinese figure text")
+        if hits["HiraginoJapanese"] > HIRAGINO_LIMIT:
+            print(f"  ERROR: {hits['HiraginoJapanese']} Japanese Hiragino font resources"
+                  f" (limit {HIRAGINO_LIMIT}) -- inspect figure text for fallback")
             failed = True
-    sys.exit(1 if failed else 0)
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
